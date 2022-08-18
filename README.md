@@ -1,2 +1,2 @@
 # chat-app
-MongoDB NodeJs/ExpressJS VueJS Socket.io
+MongoDB NodeJS/ExpressJS VueJS Socket.io
