@@ -1,7 +1,6 @@
 const clientUrl = import.meta.env.VITE_CLIENT_URL;
 const serverUrl = import.meta.env.VITE_SERVER_URL;
 const socketUrl = import.meta.env.VITE_SOCKET_URL;
-const encryptObject = import.meta.env.VITE_ENCRYPT_OBJECT;
 const nameCookie = import.meta.env.VITE_NAME_COOKIE;
 
 //Setup môi trường
@@ -9,7 +8,6 @@ export const env = {
   hostClient: clientUrl,
   hostServer: serverUrl,
   hostSocket: socketUrl,
-  encryptObject: encryptObject,
   nameCookie: nameCookie,
   dateTimeFormat: 'DD-MM-YYYY HH:mm:ss A',
   timeFormat: 'HH:mm A',

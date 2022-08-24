@@ -117,7 +117,8 @@ export const loginHandle = async function (req: Request, res: Response) {
       return isDataValid;
     }
 
-    const item = await login(data);
+    const item: any = await login(data);
+    res.cookie('Chat-app', item?.accessToken, { maxAge: 999999, httpOnly: true });
     return response.ok(item, res);
   } catch (e: unknown) {
     let err: string;

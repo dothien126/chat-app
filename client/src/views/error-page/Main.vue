@@ -24,7 +24,7 @@
           <button
             class="intro-x btn py-3 px-4 text-white border-white dark:border-darkmode-400 dark:text-slate-200 mt-10"
           >
-            Back to Home
+            <router-link to="/">Back to home</router-link>
           </button>
         </div>
       </div>
@@ -34,11 +34,11 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import DarkModeSwitcher from "@/components/dark-mode-switcher/Main.vue";
-import dom from "@left4code/tw-starter/dist/js/dom";
+import { onMounted } from 'vue';
+import DarkModeSwitcher from '@/components/dark-mode-switcher/Main.vue';
+import dom from '@left4code/tw-starter/dist/js/dom';
 
 onMounted(() => {
-  dom("body").removeClass("main").removeClass("login").addClass("error-page");
+  dom('body').removeClass('main').removeClass('login').addClass('error-page');
 });
 </script>

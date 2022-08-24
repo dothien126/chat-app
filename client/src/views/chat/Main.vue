@@ -11,12 +11,8 @@
         </DropdownToggle>
         <DropdownMenu class="w-40">
           <DropdownContent>
-            <DropdownItem>
-              <UsersIcon class="w-4 h-4 mr-2" /> Create Group
-            </DropdownItem>
-            <DropdownItem>
-              <SettingsIcon class="w-4 h-4 mr-2" /> Settings
-            </DropdownItem>
+            <DropdownItem> <UsersIcon class="w-4 h-4 mr-2" /> Create Group </DropdownItem>
+            <DropdownItem> <SettingsIcon class="w-4 h-4 mr-2" /> Settings </DropdownItem>
           </DropdownContent>
         </DropdownMenu>
       </Dropdown>
@@ -44,9 +40,7 @@
                   class="form-control py-3 px-4 border-transparent bg-slate-100 pr-10"
                   placeholder="Search for messages or users..."
                 />
-                <SearchIcon
-                  class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0"
-                />
+                <SearchIcon class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" />
               </div>
               <div class="overflow-x-auto scrollbar-hidden">
                 <div class="flex mt-5">
@@ -66,9 +60,7 @@
                         class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600"
                       ></div>
                     </div>
-                    <div
-                      class="text-xs text-slate-500 truncate text-center mt-2"
-                    >
+                    <div class="text-xs text-slate-500 truncate text-center mt-2">
                       {{ faker.users[0].name }}
                     </div>
                   </a>
@@ -76,14 +68,11 @@
               </div>
             </div>
           </div>
-          <div
-            class="chat__chat-list overflow-y-auto scrollbar-hidden pr-1 pt-1 mt-4"
-          >
+          <div class="chat__chat-list overflow-y-auto scrollbar-hidden pr-1 pt-1 mt-4">
             <div
               v-for="(faker, fakerKey) in $_.take($f(), 10)"
               :key="fakerKey"
               class="intro-x cursor-pointer box relative flex items-center p-5"
-              :class="{ 'mt-5': fakerKey }"
               @click="showChatBox"
             >
               <div class="w-12 h-12 flex-none image-fit mr-1">
@@ -98,9 +87,7 @@
               </div>
               <div class="ml-2 overflow-hidden">
                 <div class="flex items-center">
-                  <a href="javascript:;" class="font-medium">{{
-                    faker.users[0].name
-                  }}</a>
+                  <a href="javascript:;" class="font-medium">{{ faker.users[0].name }}</a>
                   <div class="text-xs text-slate-400 ml-auto">
                     {{ faker.times[0] }}
                   </div>
@@ -127,18 +114,12 @@
                   class="form-control py-3 px-4 border-transparent bg-slate-100 pr-10"
                   placeholder="Search for messages or users..."
                 />
-                <SearchIcon
-                  class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0"
-                />
+                <SearchIcon class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" />
               </div>
-              <button type="button" class="btn btn-primary w-full mt-3">
-                Invite Friends
-              </button>
+              <button type="button" class="btn btn-primary w-full mt-3">Invite Friends</button>
             </div>
           </div>
-          <div
-            class="chat__user-list overflow-y-auto scrollbar-hidden pr-1 pt-1"
-          >
+          <div class="chat__user-list overflow-y-auto scrollbar-hidden pr-1 pt-1">
             <div class="mt-4 text-slate-500">A</div>
             <div class="cursor-pointer box relative flex items-center p-5 mt-5">
               <div class="w-12 h-12 flex-none image-fit mr-1">
@@ -155,16 +136,10 @@
                 <div class="flex items-center">
                   <a href="" class="font-medium">{{ $f()[0].users[0].name }}</a>
                 </div>
-                <div class="w-full truncate text-slate-500 mt-0.5">
-                  Last seen 2 hours ago
-                </div>
+                <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
               </div>
               <Dropdown class="ml-auto">
-                <DropdownToggle
-                  tag="a"
-                  class="w-5 h-5 block"
-                  href="javascript:;"
-                >
+                <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
                   <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -173,9 +148,7 @@
                       <Share2Icon class="w-4 h-4 mr-2" />
                       Share Contact
                     </DropdownItem>
-                    <DropdownItem>
-                      <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact
-                    </DropdownItem>
+                    <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -193,20 +166,12 @@
               </div>
               <div class="ml-2 overflow-hidden">
                 <div class="flex items-center">
-                  <a href="" class="font-medium">{{
-                    $f()[1]["users"][0]["name"]
-                  }}</a>
+                  <a href="" class="font-medium">{{ $f()[1]['users'][0]['name'] }}</a>
                 </div>
-                <div class="w-full truncate text-slate-500 mt-0.5">
-                  Last seen 2 hours ago
-                </div>
+                <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
               </div>
               <Dropdown class="ml-auto">
-                <DropdownToggle
-                  tag="a"
-                  class="w-5 h-5 block"
-                  href="javascript:;"
-                >
+                <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
                   <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -215,9 +180,7 @@
                       <Share2Icon class="w-4 h-4 mr-2" />
                       Share Contact
                     </DropdownItem>
-                    <DropdownItem>
-                      <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact
-                    </DropdownItem>
+                    <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -236,20 +199,12 @@
               </div>
               <div class="ml-2 overflow-hidden">
                 <div class="flex items-center">
-                  <a href="" class="font-medium">{{
-                    $f()[2]["users"][0]["name"]
-                  }}</a>
+                  <a href="" class="font-medium">{{ $f()[2]['users'][0]['name'] }}</a>
                 </div>
-                <div class="w-full truncate text-slate-500 mt-0.5">
-                  Last seen 2 hours ago
-                </div>
+                <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
               </div>
               <Dropdown class="ml-auto">
-                <DropdownToggle
-                  tag="a"
-                  class="w-5 h-5 block"
-                  href="javascript:;"
-                >
+                <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
                   <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -258,9 +213,7 @@
                       <Share2Icon class="w-4 h-4 mr-2" />
                       Share Contact
                     </DropdownItem>
-                    <DropdownItem>
-                      <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact
-                    </DropdownItem>
+                    <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -278,20 +231,12 @@
               </div>
               <div class="ml-2 overflow-hidden">
                 <div class="flex items-center">
-                  <a href="" class="font-medium">{{
-                    $f()[3]["users"][0]["name"]
-                  }}</a>
+                  <a href="" class="font-medium">{{ $f()[3]['users'][0]['name'] }}</a>
                 </div>
-                <div class="w-full truncate text-slate-500 mt-0.5">
-                  Last seen 2 hours ago
-                </div>
+                <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
               </div>
               <Dropdown class="ml-auto">
-                <DropdownToggle
-                  tag="a"
-                  class="w-5 h-5 block"
-                  href="javascript:;"
-                >
+                <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
                   <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -300,9 +245,7 @@
                       <Share2Icon class="w-4 h-4 mr-2" />
                       Share Contact
                     </DropdownItem>
-                    <DropdownItem>
-                      <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact
-                    </DropdownItem>
+                    <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -320,20 +263,12 @@
               </div>
               <div class="ml-2 overflow-hidden">
                 <div class="flex items-center">
-                  <a href="" class="font-medium">{{
-                    $f()[4]["users"][0]["name"]
-                  }}</a>
+                  <a href="" class="font-medium">{{ $f()[4]['users'][0]['name'] }}</a>
                 </div>
-                <div class="w-full truncate text-slate-500 mt-0.5">
-                  Last seen 2 hours ago
-                </div>
+                <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
               </div>
               <Dropdown class="ml-auto">
-                <DropdownToggle
-                  tag="a"
-                  class="w-5 h-5 block"
-                  href="javascript:;"
-                >
+                <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
                   <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -342,9 +277,7 @@
                       <Share2Icon class="w-4 h-4 mr-2" />
                       Share Contact
                     </DropdownItem>
-                    <DropdownItem>
-                      <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact
-                    </DropdownItem>
+                    <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -354,21 +287,14 @@
         <TabPanel>
           <div class="pr-1">
             <div class="box px-5 py-10 mt-5">
-              <div
-                class="w-20 h-20 flex-none image-fit rounded-full overflow-hidden mx-auto"
-              >
-                <img
-                  alt="Midone Tailwind HTML Admin Template"
-                  :src="$f()[0].photos[0]"
-                />
+              <div class="w-20 h-20 flex-none image-fit rounded-full overflow-hidden mx-auto">
+                <img alt="Midone Tailwind HTML Admin Template" :src="$f()[0].photos[0]" />
               </div>
               <div class="text-center mt-3">
                 <div class="font-medium text-lg">
-                  {{ $f()[0]["users"][0]["name"] }}
+                  {{ $f()[0]['users'][0]['name'] }}
                 </div>
-                <div class="text-slate-500 mt-1">
-                  Tailwind HTML Admin Template
-                </div>
+                <div class="text-slate-500 mt-1">Tailwind HTML Admin Template</div>
               </div>
             </div>
             <div class="box p-5 mt-5">
@@ -395,14 +321,14 @@
               >
                 <div>
                   <div class="text-slate-500">Email</div>
-                  <div class="mt-1">{{ $f()[0]["users"][0]["email"] }}</div>
+                  <div class="mt-1">{{ $f()[0]['users'][0]['email'] }}</div>
                 </div>
                 <MailIcon class="w-4 h-4 text-slate-500 ml-auto" />
               </div>
               <div class="flex items-center pt-5">
                 <div>
                   <div class="text-slate-500">Joined Date</div>
-                  <div class="mt-1">{{ $f()[0]["dates"][0] }}</div>
+                  <div class="mt-1">{{ $f()[0]['dates'][0] }}</div>
                 </div>
                 <ClockIcon class="w-4 h-4 text-slate-500 ml-auto" />
               </div>
@@ -421,9 +347,7 @@
             class="flex flex-col sm:flex-row border-b border-slate-200/60 dark:border-darkmode-400 px-5 py-4"
           >
             <div class="flex items-center">
-              <div
-                class="w-10 h-10 sm:w-12 sm:h-12 flex-none image-fit relative"
-              >
+              <div class="w-10 h-10 sm:w-12 sm:h-12 flex-none image-fit relative">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -432,7 +356,7 @@
               </div>
               <div class="ml-3 mr-auto">
                 <div class="font-medium text-base">
-                  {{ $f()[0]["users"][0]["name"] }}
+                  {{ $f()[0]['users'][0]['name'] }}
                 </div>
                 <div class="text-slate-500 text-xs sm:text-sm">
                   Hey, I am using chat <span class="mx-1">•</span> Online
@@ -449,11 +373,7 @@
                 <UserPlusIcon class="w-5 h-5" />
               </a>
               <Dropdown class="ml-auto sm:ml-3">
-                <DropdownToggle
-                  tag="a"
-                  href="javascript:;"
-                  class="w-5 h-5 text-slate-500"
-                >
+                <DropdownToggle tag="a" href="javascript:;" class="w-5 h-5 text-slate-500">
                   <MoreVerticalIcon class="w-5 h-5" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -473,9 +393,7 @@
           </div>
           <div class="overflow-y-scroll scrollbar-hidden px-5 pt-5 flex-1">
             <div class="chat__box__text-box flex items-end float-left mb-4">
-              <div
-                class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5"
-              >
+              <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -489,11 +407,7 @@
                 <div class="mt-1 text-xs text-slate-500">2 mins ago</div>
               </div>
               <Dropdown class="hidden sm:block ml-3 my-auto">
-                <DropdownToggle
-                  tag="a"
-                  href="javascript:;"
-                  class="w-4 h-4 text-slate-500"
-                >
+                <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
                   <MoreVerticalIcon class="w-4 h-4" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -502,9 +416,7 @@
                       <CornerUpLeftIcon class="w-4 h-4 mr-2" />
                       Reply
                     </DropdownItem>
-                    <DropdownItem>
-                      <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                    </DropdownItem>
+                    <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -512,11 +424,7 @@
             <div class="clear-both"></div>
             <div class="chat__box__text-box flex items-end float-right mb-4">
               <Dropdown class="hidden sm:block mr-3 my-auto">
-                <DropdownToggle
-                  tag="a"
-                  href="javascript:;"
-                  class="w-4 h-4 text-slate-500"
-                >
+                <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
                   <MoreVerticalIcon class="w-4 h-4" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -525,23 +433,15 @@
                       <CornerUpLeftIcon class="w-4 h-4 mr-2" />
                       Reply
                     </DropdownItem>
-                    <DropdownItem>
-                      <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                    </DropdownItem>
+                    <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
-              <div
-                class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md"
-              >
+              <div class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md">
                 Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
-                <div class="mt-1 text-xs text-white text-opacity-80">
-                  1 mins ago
-                </div>
+                <div class="mt-1 text-xs text-white text-opacity-80">1 mins ago</div>
               </div>
-              <div
-                class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5"
-              >
+              <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -552,11 +452,7 @@
             <div class="clear-both"></div>
             <div class="chat__box__text-box flex items-end float-right mb-4">
               <Dropdown class="hidden sm:block mr-3 my-auto">
-                <DropdownToggle
-                  tag="a"
-                  href="javascript:;"
-                  class="w-4 h-4 text-slate-500"
-                >
+                <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
                   <MoreVerticalIcon class="w-4 h-4" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -565,23 +461,15 @@
                       <CornerUpLeftIcon class="w-4 h-4 mr-2" />
                       Reply
                     </DropdownItem>
-                    <DropdownItem>
-                      <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                    </DropdownItem>
+                    <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
-              <div
-                class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md"
-              >
+              <div class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md">
                 Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
-                <div class="mt-1 text-xs text-white text-opacity-80">
-                  59 secs ago
-                </div>
+                <div class="mt-1 text-xs text-white text-opacity-80">59 secs ago</div>
               </div>
-              <div
-                class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5"
-              >
+              <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -590,15 +478,11 @@
               </div>
             </div>
             <div class="clear-both"></div>
-            <div
-              class="text-slate-400 dark:text-slate-500 text-xs text-center mb-10 mt-5"
-            >
+            <div class="text-slate-400 dark:text-slate-500 text-xs text-center mb-10 mt-5">
               12 June 2020
             </div>
             <div class="chat__box__text-box flex items-end float-left mb-4">
-              <div
-                class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5"
-              >
+              <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -612,11 +496,7 @@
                 <div class="mt-1 text-xs text-slate-500">10 secs ago</div>
               </div>
               <Dropdown class="hidden sm:block ml-3 my-auto">
-                <DropdownToggle
-                  tag="a"
-                  href="javascript:;"
-                  class="w-4 h-4 text-slate-500"
-                >
+                <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
                   <MoreVerticalIcon class="w-4 h-4" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -625,9 +505,7 @@
                       <CornerUpLeftIcon class="w-4 h-4 mr-2" />
                       Reply
                     </DropdownItem>
-                    <DropdownItem>
-                      <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                    </DropdownItem>
+                    <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
@@ -635,11 +513,7 @@
             <div class="clear-both"></div>
             <div class="chat__box__text-box flex items-end float-right mb-4">
               <Dropdown class="hidden sm:block mr-3 my-auto">
-                <DropdownToggle
-                  tag="a"
-                  href="javascript:;"
-                  class="w-4 h-4 text-slate-500"
-                >
+                <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
                   <MoreVerticalIcon class="w-4 h-4" />
                 </DropdownToggle>
                 <DropdownMenu class="w-40">
@@ -648,23 +522,15 @@
                       <CornerUpLeftIcon class="w-4 h-4 mr-2" />
                       Reply
                     </DropdownItem>
-                    <DropdownItem>
-                      <TrashIcon class="w-4 h-4 mr-2" /> Delete
-                    </DropdownItem>
+                    <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
-              <div
-                class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md"
-              >
+              <div class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md">
                 Lorem ipsum
-                <div class="mt-1 text-xs text-white text-opacity-80">
-                  1 secs ago
-                </div>
+                <div class="mt-1 text-xs text-white text-opacity-80">1 secs ago</div>
               </div>
-              <div
-                class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5"
-              >
+              <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -674,9 +540,7 @@
             </div>
             <div class="clear-both"></div>
             <div class="chat__box__text-box flex items-end float-left mb-4">
-              <div
-                class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5"
-              >
+              <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
                 <img
                   alt="Midone Tailwind HTML Admin Template"
                   class="rounded-full"
@@ -686,7 +550,7 @@
               <div
                 class="bg-slate-100 dark:bg-darkmode-400 px-4 py-3 text-slate-500 rounded-r-md rounded-t-md"
               >
-                {{ $f()[0]["users"][0]["name"] }} is typing
+                {{ $f()[0]['users'][0]['name'] }} is typing
                 <span class="typing-dots ml-1">
                   <span>.</span>
                   <span>.</span>
@@ -700,12 +564,9 @@
           >
             <textarea
               class="chat__box__input form-control dark:bg-darkmode-600 h-16 resize-none border-transparent px-5 py-3 shadow-none focus:border-transparent focus:ring-0"
-              rows="1"
               placeholder="Type your message..."
             ></textarea>
-            <div
-              class="flex absolute sm:static left-0 bottom-0 ml-5 sm:ml-0 mb-5 sm:mb-0"
-            >
+            <div class="flex absolute sm:static left-0 bottom-0 ml-5 sm:ml-0 mb-5 sm:mb-0">
               <Dropdown class="mr-3 sm:mr-5">
                 <DropdownToggle
                   tag="a"
@@ -716,10 +577,7 @@
                 </DropdownToggle>
                 <DropdownMenu class="chat-dropdown">
                   <DropdownContent tag="div">
-                    <TabGroup
-                      class="chat-dropdown__box flex flex-col"
-                      :selectedIndex="1"
-                    >
+                    <TabGroup class="chat-dropdown__box flex flex-col" :selectedIndex="1">
                       <div class="px-1 pt-1">
                         <div class="relative text-slate-500">
                           <input
@@ -727,14 +585,10 @@
                             class="form-control border-transparent bg-slate-100 pr-10"
                             placeholder="Search emojis..."
                           />
-                          <SearchIcon
-                            class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"
-                          />
+                          <SearchIcon class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" />
                         </div>
                       </div>
-                      <TabList
-                        class="chat-dropdown__box__tabs nav-pills px-1 mt-5"
-                      >
+                      <TabList class="chat-dropdown__box__tabs nav-pills px-1 mt-5">
                         <Tab
                           class="border-0 w-full px-0 py-2 hover:bg-slate-100 dark:hover:bg-darkmode-400"
                           tag="button"
@@ -867,9 +721,7 @@
                       <TabPanels class="overflow-hidden mt-5">
                         <TabPanel>
                           <div class="font-medium px-1">Recent Emojis</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -891,9 +743,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Smileys & People</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -3135,9 +2985,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Animals & Nature</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -3709,9 +3557,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Food & Drink</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -4228,9 +4074,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Activities</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -4537,9 +4381,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Travel & Places</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -5581,9 +5423,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Objects</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -6400,9 +6240,7 @@
                         </TabPanel>
                         <TabPanel>
                           <div class="font-medium px-1">Symbols</div>
-                          <div
-                            class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2"
-                          >
+                          <div class="h-full pb-10 overflow-y-auto scrollbar-hidden mt-2">
                             <div class="grid grid-cols-8 text-2xl">
                               <button
                                 class="rounded focus:outline-none hover:bg-slate-100 dark:hover:bg-darkmode-400"
@@ -7437,14 +7275,9 @@
                   </DropdownContent>
                 </DropdownMenu>
               </Dropdown>
-              <div
-                class="w-4 h-4 sm:w-5 sm:h-5 relative text-slate-500 mr-3 sm:mr-5"
-              >
+              <div class="w-4 h-4 sm:w-5 sm:h-5 relative text-slate-500 mr-3 sm:mr-5">
                 <PaperclipIcon class="w-full h-full" />
-                <input
-                  type="file"
-                  class="w-full h-full top-0 left-0 absolute opacity-0"
-                />
+                <input type="file" class="w-full h-full top-0 left-0 absolute opacity-0" />
               </div>
             </div>
             <a
@@ -7459,21 +7292,12 @@
         <!-- BEGIN: Chat Default -->
         <div v-else class="h-full flex items-center">
           <div class="mx-auto text-center">
-            <div
-              class="w-16 h-16 flex-none image-fit rounded-full overflow-hidden mx-auto"
-            >
-              <img
-                alt="Midone Tailwind HTML Admin Template"
-                :src="$f()[0].photos[0]"
-              />
+            <div class="w-16 h-16 flex-none image-fit rounded-full overflow-hidden mx-auto">
+              <img alt="Midone Tailwind HTML Admin Template" :src="$f()[0].photos[0]" />
             </div>
             <div class="mt-3">
-              <div class="font-medium">
-                Hey, {{ $f()[0]["users"][0]["name"] }}!
-              </div>
-              <div class="text-slate-500 mt-1">
-                Please select a chat to start messaging.
-              </div>
+              <div class="font-medium">Hey, {{ $f()[0]['users'][0]['name'] }}!</div>
+              <div class="text-slate-500 mt-1">Please select a chat to start messaging.</div>
             </div>
           </div>
         </div>
@@ -7484,11 +7308,21 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from "vue";
+<script lang="ts">
+import { ref } from 'vue';
 
-const chatBox = ref(false);
-const showChatBox = () => {
-  chatBox.value = !chatBox.value;
+export default {
+  name: 'Chat',
+  components: {},
+  setup() {
+    const chatBox = ref(true);
+    const showChatBox = () => {
+      chatBox.value = !chatBox.value;
+    };
+    return {
+      chatBox,
+      showChatBox,
+    };
+  },
 };
 </script>
