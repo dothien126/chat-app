@@ -79,94 +79,8 @@
           </DropdownMenu>
         </Dropdown>
       </div>
-      <div class="clear-both"></div>
-      <div class="chat__box__text-box flex items-end float-right mb-4">
-        <Dropdown class="hidden sm:block mr-3 my-auto">
-          <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
-            <MoreVerticalIcon class="w-4 h-4" />
-          </DropdownToggle>
-          <DropdownMenu class="w-40">
-            <DropdownContent>
-              <DropdownItem>
-                <CornerUpLeftIcon class="w-4 h-4 mr-2" />
-                Reply
-              </DropdownItem>
-              <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
-            </DropdownContent>
-          </DropdownMenu>
-        </Dropdown>
-        <div class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md">
-          Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
-          <div class="mt-1 text-xs text-white text-opacity-80">1 mins ago</div>
-        </div>
-        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
-          <img
-            alt="Midone Tailwind HTML Admin Template"
-            class="rounded-full"
-            :src="$f()[1].photos[0]"
-          />
-        </div>
-      </div>
-      <div class="clear-both"></div>
-      <div class="chat__box__text-box flex items-end float-right mb-4">
-        <Dropdown class="hidden sm:block mr-3 my-auto">
-          <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
-            <MoreVerticalIcon class="w-4 h-4" />
-          </DropdownToggle>
-          <DropdownMenu class="w-40">
-            <DropdownContent>
-              <DropdownItem>
-                <CornerUpLeftIcon class="w-4 h-4 mr-2" />
-                Reply
-              </DropdownItem>
-              <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
-            </DropdownContent>
-          </DropdownMenu>
-        </Dropdown>
-        <div class="bg-primary px-4 py-3 text-white rounded-l-md rounded-t-md">
-          Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
-          <div class="mt-1 text-xs text-white text-opacity-80">59 secs ago</div>
-        </div>
-        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative ml-5">
-          <img
-            alt="Midone Tailwind HTML Admin Template"
-            class="rounded-full"
-            :src="$f()[1].photos[0]"
-          />
-        </div>
-      </div>
-      <div class="clear-both"></div>
       <div class="text-slate-400 dark:text-slate-500 text-xs text-center mb-10 mt-5">
         12 June 2020
-      </div>
-      <div class="chat__box__text-box flex items-end float-left mb-4">
-        <div class="w-10 h-10 hidden sm:block flex-none image-fit relative mr-5">
-          <img
-            alt="Midone Tailwind HTML Admin Template"
-            class="rounded-full"
-            :src="$f()[0].photos[0]"
-          />
-        </div>
-        <div
-          class="bg-slate-100 dark:bg-darkmode-400 px-4 py-3 text-slate-500 rounded-r-md rounded-t-md"
-        >
-          Lorem ipsum sit amen dolor, lorem ipsum sit amen dolor
-          <div class="mt-1 text-xs text-slate-500">10 secs ago</div>
-        </div>
-        <Dropdown class="hidden sm:block ml-3 my-auto">
-          <DropdownToggle tag="a" href="javascript:;" class="w-4 h-4 text-slate-500">
-            <MoreVerticalIcon class="w-4 h-4" />
-          </DropdownToggle>
-          <DropdownMenu class="w-40">
-            <DropdownContent>
-              <DropdownItem>
-                <CornerUpLeftIcon class="w-4 h-4 mr-2" />
-                Reply
-              </DropdownItem>
-              <DropdownItem> <TrashIcon class="w-4 h-4 mr-2" /> Delete </DropdownItem>
-            </DropdownContent>
-          </DropdownMenu>
-        </Dropdown>
       </div>
       <div class="clear-both"></div>
       <div class="chat__box__text-box flex items-end float-right mb-4">
@@ -6941,7 +6855,7 @@
       </div>
       <a
         href="javascript:;"
-        class="w-8 h-8 sm:w-10 sm:h-10 block bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5"
+        class="w-8 h-8 sm:w-10 sm:h-10 block bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5 hover:bg-sky-700"
         @onclick="handleSubmit"
       >
         <SendIcon class="w-4 h-4" />
@@ -6962,7 +6876,7 @@ import ConversationService from '../services/ConversationService';
 import { setNotificationFailedWhenGetData, setNotificationToastMessage } from '../utils/myFunction';
 import MessageService from '../services/MessageService';
 import { IUser } from '../types/userType';
-import axios from 'axios';
+import { MyStore } from '../stores/myStore';
 
 export default {
   name: 'ChatMain',
@@ -6978,7 +6892,7 @@ export default {
 
     const authStore = useAuthStore();
     const conversationStore = useConversationStore();
-
+    const myStore= MyStore();
     const user = authStore.currentUser.userInfor;
 
     const previewFiles = (event) => {
@@ -7004,7 +6918,7 @@ export default {
     }
 
     async function actionSaveMessage(data: IMessage) {
-      const response = await MessageService.createMsg(data);
+      const response = await MessageService.createMsg(data, myStore.cookie);
       if (response.data) {
         if (!response.data.success) {
           setNotificationToastMessage(response.data.message, false);
@@ -7018,7 +6932,7 @@ export default {
       const data = {
         conversationId: conversationId,
       } as IMessage;
-      const response = await MessageService.getMsgOfConv(data);
+      const response = await MessageService.getMsgOfConv(data, myStore.cookie);
       if (response.data) {
         if (response.data.success) {
           messageList.value = response.data.values;
@@ -7037,7 +6951,7 @@ export default {
     async function actionDeleteMessage(message: IMessage) {
       const data = message;
 
-      const response = await MessageService.deleteMsg(data);
+      const response = await MessageService.deleteMsg(data, myStore.cookie);
       if (response.data) {
         if (response.data.success) {
           const indexOfMessage = messageList.value.findIndex((value) => value._id === message._id);

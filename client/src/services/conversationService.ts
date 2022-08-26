@@ -3,20 +3,20 @@ import { IConversation, GetConversationOfFriend, Conversation } from '../types/c
 
 class ConversationService {
   // Conv === conversation
-  createConv(data: Conversation) {
-    return apiClient.post('/conversation/create', data);
+  createConv(data: Conversation, authorization: string) {
+    return apiClient(authorization).post('/conversation/create', data);
   }
 
-  getConvList(data: IConversation) {
-    return apiClient.post('/conversation/user', data);
+  getConvList(data: IConversation, authorization: string) {
+    return apiClient(authorization).post('/conversation/user', data);
   }
 
-  getConvOfFriend(data: GetConversationOfFriend) {
-    return apiClient.post('/conversation/user/friend', data);
+  getConvOfFriend(data: GetConversationOfFriend, authorization: string) {
+    return apiClient(authorization).post('/conversation/user/friend', data);
   }
 
-  deleteConv(data: IConversation) {
-    return apiClient.post('/conversation/delete', data)
+  deleteConv(data: IConversation, authorization: string) {
+    return apiClient(authorization).post('/conversation/delete', data)
   }
 }
 

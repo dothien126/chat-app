@@ -25,7 +25,7 @@
             <div class="overflow-x-auto scrollbar-hidden">
               <div class="flex mt-5">
                 <a
-                  v-for="(faker, fakerKey) in $_.take($f(), 10)"
+                  v-for="(faker, fakerKey) in $_.take($f(), 3)"
                   :key="fakerKey"
                   href=""
                   class="w-10 mr-4 cursor-pointer"
@@ -48,40 +48,19 @@
             </div>
           </div>
         </div>
-        <div class="chat__chat-list overflow-y-auto scrollbar-hidden pr-1 pt-1 mt-4">
-          <div
-            v-for="(faker, fakerKey) in $_.take($f(), 10)"
-            :key="fakerKey"
-            class="intro-x cursor-pointer box relative flex items-center p-5"
-            @click="showChatBox"
-          >
-            <div class="w-12 h-12 flex-none image-fit mr-1">
-              <img
-                alt="Midone Tailwind HTML Admin Template"
-                class="rounded-full"
-                :src="faker.photos[0]"
-              />
-              <div
-                class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600"
-              ></div>
-            </div>
-            <div class="ml-2 overflow-hidden">
-              <div class="flex items-center">
-                <a href="javascript:;" class="font-medium">{{ faker.users[0].name }}</a>
-                <div class="text-xs text-slate-400 ml-auto">
-                  {{ faker.times[0] }}
-                </div>
-              </div>
-              <div class="w-full truncate text-slate-500 mt-0.5">
-                {{ faker.news[0].shortContent }}
-              </div>
-            </div>
-            <div
-              v-if="faker.trueFalse[0]"
-              class="w-5 h-5 flex items-center justify-center absolute top-0 right-0 text-xs text-white rounded-full bg-primary font-medium -mt-1 -mr-1"
-            >
-              {{ faker.notificationCount }}
-            </div>
+        <div class="overflow-x-auto scrollbar-hidden">
+          <div class="relative text-slate-500">
+            <input
+              type="text"
+              class="form-control py-3 px-4 border-transparent bg-slate-100 pr-10"
+              placeholder="Search for users..."
+              v-model="usernameKeyword"
+              v-on:keyup="getAllUser"
+            />
+            <SearchIcon class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" />
+          </div>
+          <div class="flex mt-5">
+            <List User v-for="user in userList" :key="user._id" :user="user" />
           </div>
         </div>
       </TabPanel>
@@ -100,104 +79,6 @@
           </div>
         </div>
         <div class="chat__user-list overflow-y-auto scrollbar-hidden pr-1 pt-1">
-          <div class="mt-4 text-slate-500">A</div>
-          <div class="cursor-pointer box relative flex items-center p-5 mt-5">
-            <div class="w-12 h-12 flex-none image-fit mr-1">
-              <img
-                alt="Midone Tailwind HTML Admin Template"
-                class="rounded-full"
-                :src="$f()[0].photos[0]"
-              />
-              <div
-                class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600"
-              ></div>
-            </div>
-            <div class="ml-2 overflow-hidden">
-              <div class="flex items-center">
-                <a href="" class="font-medium">{{ $f()[0].users[0].name }}</a>
-              </div>
-              <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
-            </div>
-            <Dropdown class="ml-auto">
-              <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-              </DropdownToggle>
-              <DropdownMenu class="w-40">
-                <DropdownContent>
-                  <DropdownItem>
-                    <Share2Icon class="w-4 h-4 mr-2" />
-                    Share Contact
-                  </DropdownItem>
-                  <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
-                </DropdownContent>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-          <div class="cursor-pointer box relative flex items-center p-5 mt-5">
-            <div class="w-12 h-12 flex-none image-fit mr-1">
-              <img
-                alt="Midone Tailwind HTML Admin Template"
-                class="rounded-full"
-                :src="$f()[1].photos[0]"
-              />
-              <div
-                class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600"
-              ></div>
-            </div>
-            <div class="ml-2 overflow-hidden">
-              <div class="flex items-center">
-                <a href="" class="font-medium">{{ $f()[1]['users'][0]['name'] }}</a>
-              </div>
-              <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
-            </div>
-            <Dropdown class="ml-auto">
-              <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-              </DropdownToggle>
-              <DropdownMenu class="w-40">
-                <DropdownContent>
-                  <DropdownItem>
-                    <Share2Icon class="w-4 h-4 mr-2" />
-                    Share Contact
-                  </DropdownItem>
-                  <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
-                </DropdownContent>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-          <div class="mt-4 text-slate-500">B</div>
-          <div class="cursor-pointer box relative flex items-center p-5 mt-5">
-            <div class="w-12 h-12 flex-none image-fit mr-1">
-              <img
-                alt="Midone Tailwind HTML Admin Template"
-                class="rounded-full"
-                :src="$f()[2].photos[0]"
-              />
-              <div
-                class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600"
-              ></div>
-            </div>
-            <div class="ml-2 overflow-hidden">
-              <div class="flex items-center">
-                <a href="" class="font-medium">{{ $f()[2]['users'][0]['name'] }}</a>
-              </div>
-              <div class="w-full truncate text-slate-500 mt-0.5">Last seen 2 hours ago</div>
-            </div>
-            <Dropdown class="ml-auto">
-              <DropdownToggle tag="a" class="w-5 h-5 block" href="javascript:;">
-                <MoreHorizontalIcon class="w-5 h-5 text-slate-500" />
-              </DropdownToggle>
-              <DropdownMenu class="w-40">
-                <DropdownContent>
-                  <DropdownItem>
-                    <Share2Icon class="w-4 h-4 mr-2" />
-                    Share Contact
-                  </DropdownItem>
-                  <DropdownItem> <CopyIcon class="w-4 h-4 mr-2" /> Copy Contact </DropdownItem>
-                </DropdownContent>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
           <div class="cursor-pointer box relative flex items-center p-5 mt-5">
             <div class="w-12 h-12 flex-none image-fit mr-1">
               <img
@@ -264,57 +145,7 @@
           </div>
         </div>
       </TabPanel>
-      <TabPanel>
-        <div class="pr-1">
-          <div class="box px-5 py-10 mt-5">
-            <div class="w-20 h-20 flex-none image-fit rounded-full overflow-hidden mx-auto">
-              <img alt="Midone Tailwind HTML Admin Template" :src="$f()[0].photos[0]" />
-            </div>
-            <div class="text-center mt-3">
-              <div class="font-medium text-lg">
-                {{ $f()[0]['users'][0]['name'] }}
-              </div>
-              <div class="text-slate-500 mt-1">Tailwind HTML Admin Template</div>
-            </div>
-          </div>
-          <div class="box p-5 mt-5">
-            <div
-              class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 pb-5"
-            >
-              <div>
-                <div class="text-slate-500">Country</div>
-                <div class="mt-1">New York City, USA</div>
-              </div>
-              <GlobeIcon class="w-4 h-4 text-slate-500 ml-auto" />
-            </div>
-            <div
-              class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 py-5"
-            >
-              <div>
-                <div class="text-slate-500">Phone</div>
-                <div class="mt-1">+32 19 23 62 24 34</div>
-              </div>
-              <MicIcon class="w-4 h-4 text-slate-500 ml-auto" />
-            </div>
-            <div
-              class="flex items-center border-b border-slate-200/60 dark:border-darkmode-400 py-5"
-            >
-              <div>
-                <div class="text-slate-500">Email</div>
-                <div class="mt-1">{{ $f()[0]['users'][0]['email'] }}</div>
-              </div>
-              <MailIcon class="w-4 h-4 text-slate-500 ml-auto" />
-            </div>
-            <div class="flex items-center pt-5">
-              <div>
-                <div class="text-slate-500">Joined Date</div>
-                <div class="mt-1">{{ $f()[0]['dates'][0] }}</div>
-              </div>
-              <ClockIcon class="w-4 h-4 text-slate-500 ml-auto" />
-            </div>
-          </div>
-        </div>
-      </TabPanel>
+      <ChatProfile />
     </TabPanels>
   </TabGroup>
   <!-- END: Chat Side Menu -->
@@ -323,7 +154,6 @@
 <script lang="ts">
 import ChatProfile from './ChatProfile.vue';
 import Conversation from './Conversation.vue';
-import Stranger from './Stranger.vue';
 import { onMounted, computed, ref } from 'vue';
 import { useConversationStore } from '../stores/conversationStore';
 import { useAuthStore } from '../stores/authStore';
@@ -332,22 +162,40 @@ import { setNotificationFailedWhenGetData, setNotificationToastMessage } from '.
 import { IUser } from '../types/userType';
 import ConversationService from '../services/ConversationService';
 import { IConversation } from '../types/conversationType';
+import { MyStore } from '../stores/myStore';
 
 export default {
   name: 'ChatSideMenu',
-  components: { ChatProfile, Stranger, Conversation },
+  components: { ChatProfile, Conversation },
   props: ['socket'],
   setup() {
     const usernameKeyword = ref('');
 
     const conversationStore = useConversationStore();
     const authStore = useAuthStore();
+    const myStore = MyStore();
 
     async function getListConvHandle() {
       const data = {
         username: usernameKeyword.value,
       } as IConversation;
-      const response = await ConversationService.getConvList(data);
+      const response = await ConversationService.getConvList(data, myStore.cookie);
+      if (response.data) {
+        if (response.data.success) {
+          conversationStore.getListConversations(response.data.values);
+        } else if (!response.data.success) {
+          setNotificationToastMessage(response.data.message, false);
+        }
+      } else {
+        setNotificationFailedWhenGetData();
+      }
+    }
+
+    async function getAllUser() {
+      const data = {
+        username: usernameKeyword.value,
+      } as IUser;
+      const response = await UserService.getAll(data, myStore.cookie);
       if (response.data) {
         if (response.data.success) {
           conversationStore.getListConversations(response.data.values);
@@ -371,6 +219,7 @@ export default {
       conversations,
       usernameKeyword,
       getListConvHandle,
+      getAllUser,
     };
   },
 };

@@ -191,6 +191,7 @@ export default defineComponent({
         } as IUser;
 
         const response = await UserService.insert(data);
+        console.log(data)
         if (response.data) {
           // setNotificationToastMessage(response.data.message, response.data.success);
 
