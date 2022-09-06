@@ -19,6 +19,10 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
+  socket.on('createConversation', (data) => {
+    io.to(data.receiverId).emit('createConversation', data);
+  });
+
   socket.on('join_conversation', (conversationId) => {
     socket.join(conversationId);
     console.log(`User with ID: ${socket.id} joined room: ${conversationId}`);

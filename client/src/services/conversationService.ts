@@ -1,13 +1,13 @@
 import { apiClient } from '../http-common';
-import { IConversation, GetConversationOfFriend, Conversation } from '../types/conversationType';
+import { IConversation, GetConversationOfFriend } from '../types/conversationType';
 
 class ConversationService {
   // Conv === conversation
-  createConv(data: Conversation, authorization: string) {
+  createConv(data: string, authorization: string) {
     return apiClient(authorization).post('/conversation/create', data);
   }
 
-  getConvList(data: IConversation, authorization: string) {
+  getConvList(data: any, authorization: string) {
     return apiClient(authorization).post('/conversation/user', data);
   }
 

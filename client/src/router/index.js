@@ -61,6 +61,7 @@ import Login from '../views/login/Main.vue';
 import ErrorPage from '../views/error-page/Main.vue';
 import Chat from '../views/chat/Main.vue';
 import Home from '../views/home/Main.vue';
+import { MyStore } from '../stores/myStore';
 
 const routes = [
   { path: '/', name: 'register', component: Register },
@@ -76,6 +77,11 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { left: 0, top: 0 };
   },
+});
+
+router.beforeEach(() => {
+  const myStore = MyStore();
+  myStore.getCookie();
 });
 
 export default router;

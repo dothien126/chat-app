@@ -1,14 +1,14 @@
 import { defineStore, StoreDefinition } from 'pinia';
-import { IUser, User } from '../types/userType';
+import { IUser } from '../types/userType';
 
-export const useUserStore: StoreDefinition = defineStore({
+export const UserStore: StoreDefinition = defineStore({
   id: 'users',
   state: () => ({
-    users: [] as User[],
+    users: [] as IUser[],
   }),
   getters: {},
   actions: {
-    getAllUser(users: User[]) {
+    getAllUser(users: IUser[]) {
       this.users = users;
     },
   },

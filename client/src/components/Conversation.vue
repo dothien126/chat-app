@@ -47,6 +47,7 @@ import { useAuthStore } from '../stores/authStore';
 import { IMessage } from '../types/messageType';
 import MessageService from '../services/MessageService';
 import { setNotificationFailedWhenGetData, setNotificationToastMessage } from '../utils/myFunction';
+import { MyStore } from '../stores/myStore';
 
 export default {
   name: 'Conversation',
@@ -56,12 +57,13 @@ export default {
     const conversationStore = useConversationStore();
     const authStore = useAuthStore();
     const unReadMessage = ref<IMessage[]>([]);
+    const myStore = MyStore();
 
     async function actionMarkReadedMessage(conversationId: string) {
       const data = {
         conversationId: conversationId,
       } as IMessage;
-      const response = await MessageService.markMsgReaded(data);
+      const response = await MessageService.markMsgReaded(data, myStore.cookie);
 
       if (response.data) {
         if (!response.data.success) {
@@ -89,7 +91,7 @@ export default {
       }
 
       // Scroll tới cuối cùng
-      const element: HTMLElement | any = await document.getElementById('message-box');
+      const element: HTMLElement | any = document.getElementById('message-box');
       element.scrollTop = element.scrollHeight;
     }
 
@@ -105,11 +107,11 @@ export default {
 
     return {
       conversationStore,
-      joinConversation,
       moment,
       unReadMessage,
       authStore,
       unReadMessageCount,
+      joinConversation,
     };
   },
 };

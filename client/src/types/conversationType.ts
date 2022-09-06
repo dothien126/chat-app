@@ -9,7 +9,8 @@ export type Conversation = {
 };
 
 export type IConversation = {
-  username: string;
+  _id: string;
+  members: IUser[]
 };
 
 export type GetConversationOfFriend = {

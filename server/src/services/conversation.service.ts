@@ -4,6 +4,7 @@ import { errorUnknown } from '../utils/myVariable';
 // create conversation
 export const createConversation = async function (senderId: string, receiverId: string) {
   try {
+    
     const conversation = new Conversation({
       members: [senderId, receiverId],
     });

@@ -25,23 +25,24 @@
             <div class="overflow-x-auto scrollbar-hidden">
               <div class="flex mt-5">
                 <a
-                  v-for="(faker, fakerKey) in $_.take($f(), 3)"
-                  :key="fakerKey"
-                  href=""
+                  v-for="user in users"
+                  :key="user._id"
+                  href="javascript:;"
                   class="w-10 mr-4 cursor-pointer"
                 >
                   <div class="w-10 h-10 flex-none image-fit rounded-full">
                     <img
                       alt="Midone Tailwind HTML Admin Template"
                       class="rounded-full"
-                      :src="faker.photos[0]"
+                      :src="user.avatar"
+                      @click="handleCreateConversation(user._id)"
                     />
                     <div
                       class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600"
                     ></div>
                   </div>
                   <div class="text-xs text-slate-500 truncate text-center mt-2">
-                    {{ faker.users[0].name }}
+                    {{ user.name }}
                   </div>
                 </a>
               </div>
@@ -54,13 +55,34 @@
               type="text"
               class="form-control py-3 px-4 border-transparent bg-slate-100 pr-10"
               placeholder="Search for users..."
-              v-model="usernameKeyword"
-              v-on:keyup="getAllUser"
             />
             <SearchIcon class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" />
           </div>
           <div class="flex mt-5">
-            <List User v-for="user in userList" :key="user._id" :user="user" />
+            <List User v-for="user in users" :key="user._id" :user="user" />
+          </div>
+        </div>
+        <div class="overflow-x-auto scrollbar-hidden">
+          <div class="cursor-pointer box relative flex items-center p-5 mt-5">
+            <div class="flex mt-5">
+              <a
+                v-for="conversation in conversations"
+                :key="conversation._id"
+                href="javascript:;"
+                class="w-10 mr-4 cursor-pointer"
+              >
+                <div class="w-10 h-10 flex-none image-fit rounded-full bg-red-700">
+                  <div class="w-10 h-10 flex-none image-fit rounded-full bg-white-700">
+                    <div
+                      class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600 hover:bg-sky-700"
+                    ></div>
+                  </div>
+                  <div
+                    class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white dark:border-darkmode-600 hover:bg-sky-700"
+                  ></div>
+                </div>
+              </a>
+            </div>
           </div>
         </div>
       </TabPanel>
@@ -154,15 +176,14 @@
 <script lang="ts">
 import ChatProfile from './ChatProfile.vue';
 import Conversation from './Conversation.vue';
-import { onMounted, computed, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useConversationStore } from '../stores/conversationStore';
-import { useAuthStore } from '../stores/authStore';
-import UserService from '../services/UserService';
 import { setNotificationFailedWhenGetData, setNotificationToastMessage } from '../utils/MyFunction';
 import { IUser } from '../types/userType';
-import ConversationService from '../services/ConversationService';
+import ConversationService from '../services/conversationService';
 import { IConversation } from '../types/conversationType';
-import { MyStore } from '../stores/myStore';
+import Cookies from 'js-cookie';
+import UserService from '../services/userService';
 
 export default {
   name: 'ChatSideMenu',
@@ -170,56 +191,69 @@ export default {
   props: ['socket'],
   setup() {
     const usernameKeyword = ref('');
+    const users = ref<IUser[]>([]);
+    const conversations = ref<IConversation[]>([]);
+    const conversation = ref(true);
 
-    const conversationStore = useConversationStore();
-    const authStore = useAuthStore();
-    const myStore = MyStore();
+    async function getAllConvHandle() {
+      const cookie = Cookies.get('uid-chat') as string;
 
-    async function getListConvHandle() {
-      const data = {
-        username: usernameKeyword.value,
-      } as IConversation;
-      const response = await ConversationService.getConvList(data, myStore.cookie);
+      const response = await ConversationService.getConvList({ data: '' }, cookie);
       if (response.data) {
-        if (response.data.success) {
-          conversationStore.getListConversations(response.data.values);
+        if (response.data.message === 'success') {
+          conversations.value = response.data.values;
         } else if (!response.data.success) {
-          setNotificationToastMessage(response.data.message, false);
+          // setNotificationToastMessage(response.data.message, false);
         }
       } else {
         setNotificationFailedWhenGetData();
       }
     }
 
-    async function getAllUser() {
-      const data = {
-        username: usernameKeyword.value,
-      } as IUser;
-      const response = await UserService.getAll(data, myStore.cookie);
-      if (response.data) {
-        if (response.data.success) {
-          conversationStore.getListConversations(response.data.values);
-        } else if (!response.data.success) {
-          setNotificationToastMessage(response.data.message, false);
-        }
-      } else {
-        setNotificationFailedWhenGetData();
-      }
-    }
-
-    // onMounted(async () => {
-    //   await getListConvHandle();
-    // });
-
-    const conversations = computed(() => {
-      return conversationStore.conversations;
+    onMounted(async () => {
+      await getAllConvHandle();
     });
+
+    async function handleGetAllUser() {
+      const cookie = Cookies.get('uid-chat') as string;
+
+      const response = await UserService.getAllExpelMe({ data: '' }, cookie);
+
+      if (response.data) {
+        if (response.data.message === 'success') {
+          users.value = response.data.values;
+        } else {
+          // setNotificationToastMessage(response.data.message, false);
+        }
+      } else {
+        setNotificationFailedWhenGetData();
+      }
+    }
+
+    onMounted(async () => {
+      await handleGetAllUser();
+    });
+
+    const handleCreateConversation = async (receiverId: string) => {
+      const cookie = Cookies.get('uid-chat') as string;
+
+      const response = await ConversationService.createConv(receiverId, cookie);
+
+      console.log(response);
+    };
+
+    const showConversation = () => {
+      conversation.value = !conversation.value;
+    };
 
     return {
       conversations,
       usernameKeyword,
-      getListConvHandle,
-      getAllUser,
+      users,
+      getAllConvHandle,
+      handleGetAllUser,
+      handleCreateConversation,
+      showConversation,
     };
   },
 };

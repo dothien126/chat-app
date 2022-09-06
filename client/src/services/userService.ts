@@ -1,20 +1,20 @@
-import { apiAuthClient, apiClient } from '../http-common';
-import { IUser, User } from '../types/userType';
+import { apiClient } from '../http-common';
+import { IUser } from '../types/userType';
 
 class UserService {
-  login(data: IUser) {
-    return apiAuthClient().post('/user/login', data);
+  login(data: IUser, authentication: string) {
+    return apiClient(authentication).post('/user/login', data);
   }
 
-  insert(user: IUser): Promise<any> {
-    return apiAuthClient().post('/user/insert', user);
+  insert(user: IUser, authentication: string): Promise<any> {
+    return apiClient(authentication).post('/user/insert', user);
   }
 
-  getInforMe(user: IUser, authorization: string): Promise<any> {
-    return apiClient(authorization).post('/user/infor', user);
+  getInforMe(authorization: string): Promise<any> {
+    return apiClient(authorization).get('/user/infor');
   }
 
-  getAll(user: IUser, authorization: string): Promise<any> {
+  getAllExpelMe(user: any, authorization: string): Promise<any> {
     return apiClient(authorization).post('/user/all-user-not-me', user);
   }
 }

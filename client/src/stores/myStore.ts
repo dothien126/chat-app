@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { CookieResponse } from '../models/cookieResponse';
 import { NotificationMessage } from '../models/NotificationAlert';
-import noAvatar from '@/assets/images/no-avatar.png';
+import Cookies from 'js-cookie';
 
 export const MyStore = defineStore('myStore', () => {
   //Init value
@@ -20,15 +19,9 @@ export const MyStore = defineStore('myStore', () => {
     document.cookie = name + '=; expires=' + date.toUTCString() + '; path=/';
   }
 
-  function getCookie(name: string) {
-    const value = '; ' + document.cookie;
-    const parts = value.split('; ' + name + '=');
-
-    if (parts.length == 2) {
-      cookie.value = parts.pop()!.split(';').shift() as string;
-    } else {
-      cookie.value = '';
-    }
+  function getCookie() {
+    const cookie = Cookies.get('uid-chat');
+    return cookie;
   }
 
   return {

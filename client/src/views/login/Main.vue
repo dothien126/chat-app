@@ -105,6 +105,7 @@ import {
   setNotificationFailedWhenGetData,
   setNotificationToastMessage,
 } from '../../utils/MyFunction';
+import {MyStore} from '../../stores/myStore'
 
 export default defineComponent({
   name: 'Login',
@@ -116,6 +117,7 @@ export default defineComponent({
     const message = ref('');
 
     const router = useRouter();
+    const myStore = MyStore();
     const formLogin = {
       addEmail,
       password,
@@ -145,9 +147,12 @@ export default defineComponent({
         if (Cookies.get(env.nameCookie)) {
         }
 
-        const response = await UserService.login(data);
+        const response = await UserService.login(data, myStore.cookie);
+
         if (response.data) {
           // setNotificationToastMessage(response.data.message, response.data.success);
+          Cookies.set('uid-chat', response.data.values.accessToken)
+
           if (response.data.message === 'success') {
             await router.push('/home');
           }

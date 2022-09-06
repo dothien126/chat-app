@@ -7,7 +7,7 @@ import {
   getConversationOfTwoUser,
   getConversationOfUser,
 } from '../services/conversation.service';
-import { errorMsg, errorUnknown, isTokenValid, jwtNotVerify } from '../utils/myVariable';
+import { errorUnknown, isTokenValid, jwtNotVerify } from '../utils/myVariable';
 import * as response from '../message';
 
 /**
@@ -25,8 +25,8 @@ export const createConvHandle = async function (req: Request, res: Response) {
     const verify = await authorizationUser(authorization);
 
     if (verify) {
-      const { receiveId } = req.body;
-      const itemService = await createConversation(verify, receiveId);
+      const { receiverId } = req.body;
+      const itemService = await createConversation(verify, receiverId);
       return response.ok(itemService, res);
     } else {
       return response.err(isTokenValid, res);

@@ -6856,7 +6856,7 @@
       <a
         href="javascript:;"
         class="w-8 h-8 sm:w-10 sm:h-10 block bg-primary text-white rounded-full flex-none flex items-center justify-center mr-5 hover:bg-sky-700"
-        @onclick="handleSubmit"
+        @onclick="handleSendMessage"
       >
         <SendIcon class="w-4 h-4" />
       </a>
@@ -6877,16 +6877,17 @@ import { setNotificationFailedWhenGetData, setNotificationToastMessage } from '.
 import MessageService from '../services/MessageService';
 import { IUser } from '../types/userType';
 import { MyStore } from '../stores/myStore';
+import Cookies from 'js-cookie';
 
 export default {
-  name: 'ChatMain',
+  name: 'ChatActive',
   props: ['socket'],
   // @ts-ignore
   setup(props) {
     const newMessage = ref('');
     const messageList = ref<IMessage[]>([]);
     const conversationId = ref<string>('');
-    const receiver = ref<IUser>();
+    const receiverId = ref<IUser>();
     const isTyping = ref(false);
     const deleteMessageId = ref('');
 
@@ -6899,26 +6900,14 @@ export default {
       newMessage.value = event.target.files;
     };
 
-    const choseIcon = (event) => {
+    const chooseIcon = (event) => {
       newMessage.value = newMessage.value + event.target.value;
     };
 
-    async function findListConversation() {
-      // const data = {} as GetConversationOfFriend;
-      // const response = await ConversationService.getConvList(data);
-      // if (response.data) {
-      //   if (response.data.success) {
-      //     conversationStore.getListConversations(response.data.values);
-      //   } else {
-      //     setNotificationToastMessage(response.data.message, false);
-      //   }
-      // } else {
-      //   setNotificationFailedWhenGetData();
-      // }
-    }
-
     async function actionSaveMessage(data: IMessage) {
-      const response = await MessageService.createMsg(data, myStore.cookie);
+      const cookie = Cookies.get('uid-chat') as string;
+
+      const response = await MessageService.createMsg(data, cookie);
       if (response.data) {
         if (!response.data.success) {
           setNotificationToastMessage(response.data.message, false);
@@ -6970,7 +6959,7 @@ export default {
       () => conversationStore.detailConversation,
       async (detailConversation: Conversation) => {
         conversationId.value = detailConversation._id;
-        receiver.value = await detailConversation.userDetails[0];
+        receiverId.value = await detailConversation.userDetails[0];
         await findAllMessagesInConversation(conversationId.value);
       }
     );
@@ -7020,18 +7009,17 @@ export default {
     async function handleSendMessage(event) {
       event.preventDefault();
 
-      if (newMessage.value !== '' && conversationId.value && user && receiver.value) {
+      if (newMessage.value !== '' && conversationId.value && user && receiverId.value) {
         const messageData = {
           conversationId: conversationId.value,
           senderId: user._id,
           text: newMessage.value,
-          receiverId: receiver.value._id,
+          receiverId: receiverId.value._id,
         } as IMessage;
 
         await props.socket.emit('send_message', messageData);
         props.socket.emit('send_unread', messageData);
         await actionSaveMessage(messageData);
-        await findListConversation();
         newMessage.value = '';
       }
     }
@@ -7049,13 +7037,13 @@ export default {
       messageList,
       handleSendMessage,
       user,
-      receiver,
+      receiverId,
       conversationStore,
       moment,
-      previewFiles,
-      choseIcon,
-      actionStartTypingMessage,
       isTyping,
+      previewFiles,
+      chooseIcon,
+      actionStartTypingMessage,
       actionDeleteMessage,
       actionInitDeleteMessage,
     };

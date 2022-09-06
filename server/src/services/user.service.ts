@@ -40,11 +40,37 @@ export const createUser = async function (data: IUser): Promise<any> {
 };
 
 // get all users without me
-export const getAllUserExpelMe = async function (user: IUser): Promise<any> {
+export const getInforMe = async function (id: string): Promise<any> {
   try {
     // init value
     const condition: any = {};
-    if (user._id) condition._id = { $nin: new mongoose.Types.ObjectId(user._id) };
+    if (id) condition._id = { _id: new mongoose.Types.ObjectId(id) };
+
+    // get all users
+    const users = await User.findOne(condition).select('-password');
+
+    if (users) {
+      return users;
+    } else {
+      return notFoundMsg;
+    }
+  } catch (e: unknown) {
+    let err: string = '';
+    if (e instanceof Error) {
+      err = e.message;
+    } else {
+      err = errorUnknown;
+    }
+    return { error: err };
+  }
+};
+
+// get all users without me
+export const getAllUserExpelMe = async function (id: string): Promise<any> {
+  try {
+    // init value
+    const condition: any = {};
+    if (id) condition._id = { $nin: new mongoose.Types.ObjectId(id) };
 
     // get all users
     const users = await User.find(condition);
