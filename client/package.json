@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev-v1": "vite",
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite build",
     "preview": "vite preview",
     "dev": "cross-env vite --mode thiendv"
   },

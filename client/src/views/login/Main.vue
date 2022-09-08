@@ -105,7 +105,8 @@ import {
   setNotificationFailedWhenGetData,
   setNotificationToastMessage,
 } from '../../utils/MyFunction';
-import {MyStore} from '../../stores/myStore'
+import { MyStore } from '../../stores/myStore';
+import axios from 'axios';
 
 export default defineComponent({
   name: 'Login',
@@ -148,10 +149,12 @@ export default defineComponent({
         }
 
         const response = await UserService.login(data, myStore.cookie);
+        // const response = await axios.post('localhost:8000/api/user/login', data)
+        console.log(response);
 
         if (response.data) {
           // setNotificationToastMessage(response.data.message, response.data.success);
-          Cookies.set('uid-chat', response.data.values.accessToken)
+          Cookies.set('uid-chat', response.data.values.accessToken);
 
           if (response.data.message === 'success') {
             await router.push('/home');

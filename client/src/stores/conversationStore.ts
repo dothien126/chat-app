@@ -10,13 +10,13 @@ export const useConversationStore: StoreDefinition = defineStore({
   }),
   getters: {},
   actions: {
-    getListConversations(conv: Conversation[]) {
-      this.conversations = conv;
+    getListConversations(conversations: Conversation[]) {
+      this.conversations = conversations;
     },
 
-    getChatDetail(convId: string) {
+    getChatDetail(conversationId: string) {
       this.detailConversation = this.conversations.find(
-        (conversation: Conversation) => conversation._id === convId
+        (conversation: Conversation) => conversation._id === conversationId
       );
     },
 

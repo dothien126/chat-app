@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import App from "./App.vue";
+// @ts-ignore
 import router from "./router";
 import globalComponents from "./global-components";
 import utils from "./utils";
