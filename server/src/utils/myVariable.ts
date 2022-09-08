@@ -8,7 +8,6 @@ export const env = {
   dbPort: process.env.DB_PORT as string,
   dbUserName: process.env.DB_USERNAME as string,
   dbPassword: process.env.DB_PASSWORD as string,
-  dbPlus: process.env.DB_PLUS as string
 };
 
 export const PATH_BASE_AVATAR = 'https://sso.inet.vn/uploads/';

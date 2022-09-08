@@ -1,4 +1,3 @@
-require('dotenv').config();
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -27,20 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// const url = 'mongodb://localhost:27017/chat-app';
-const url =
-  'mongodb://' +
-  env.dbUserName +
-  ':' +
-  env.dbPassword +
-  '@' +
-  env.dbHostName +
-  ':' +
-  env.dbPort +
-  '/' +
-  env.dbName +
-  env.dbPlus;
-// const url = 'mongodb://thiendo:13345678@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
+const url = "mongodb://" + env.dbUserName + ":" + env.dbPassword + "@" + env.dbHostName + ":" + env.dbPort + "/" + env.dbName + "";
 mongoose.set('autoCreate', true);
 
 mongoose
