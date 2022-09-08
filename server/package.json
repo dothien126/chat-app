@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "ts-node-dev src/app.ts"
+    "dev": "ts-node-dev src/app.ts",
+    "product": "set NODE_ENV=product&&ts-node-dev src/app.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

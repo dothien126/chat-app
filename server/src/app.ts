@@ -7,17 +7,18 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 
 import { route } from './routes';
+import { env } from './utils/myVariable';
 
 const app: Application = express();
 
 app.use(cookieParser());
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-};
+// const corsOptions = {
+//   origin: 'http://localhost:3000',
+//   credentials: true,
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(helmet());
 app.use(morgan('combined'));
@@ -26,7 +27,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-const url = 'mongodb://localhost:27017/chat-app';
+// const url = 'mongodb://localhost:27017/chat-app';
+const url =
+  'mongodb://' +
+  env.dbUserName +
+  ':' +
+  env.dbPassword +
+  '@' +
+  env.dbHostName +
+  ':' +
+  env.dbPort +
+  '/' +
+  env.dbName +
+  env.dbPlus;
+// const url = 'mongodb://thiendo:13345678@localhost:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
 mongoose.set('autoCreate', true);
 
 mongoose
